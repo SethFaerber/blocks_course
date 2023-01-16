@@ -29,3 +29,14 @@ bronze = flyers.detect { |flyer| flyer.status == :bronze }
 puts freq
 puts infreq
 puts bronze
+
+puts "-------------------------------------------"
+platinum, sods = flyers.partition { |flyer| flyer.status == :platinum}
+puts platinum, sods
+
+
+print = flyers.map { |flyer| "#{flyer.name} (#{flyer.status.upcase})" }
+puts print
+
+total_kms_flown = flyers.map { |flyer| flyer.miles_flown * 1.6 }.reduce(0, :+)
+puts "Total km flown: #{total_kms_flown}"
