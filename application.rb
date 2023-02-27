@@ -17,14 +17,15 @@ class Application
     puts "Writing to #{@environment} log file..."
   end
 
-  def in_production
-    @environment = :production
+  def in_environment(new_environment)
+    old_environment = @environment
+    @environment = new_environment
     yield
   rescue Exception => e
     puts e.message
   ensure
-    @environment = :development
-    puts "Reset environment to #{@environment}"
+    @environment = old_environment
+    puts "Reset environment to '#{@environment}'"
   end
 end
 
@@ -35,7 +36,7 @@ app.write_to_log
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
-app.in_production do
+app.in_environment(:quibbles) do
   app.connect_to_database
   app.handle_request
   raise "Boom!"
