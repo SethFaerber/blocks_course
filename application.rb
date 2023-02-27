@@ -20,6 +20,9 @@ class Application
   def in_production
     @environment = :production
     yield
+  rescue Exception => e
+    puts e.message
+  ensure
     @environment = :development
     puts "Reset environment to #{@environment}"
   end
@@ -35,5 +38,6 @@ puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 app.in_production do
   app.connect_to_database
   app.handle_request
+  raise "Boom!"
   app.write_to_log
 end
