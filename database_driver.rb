@@ -49,3 +49,4 @@ driver = DatabaseDriver.open("my_database", "admin", "secret")
 driver.execute("SELECT * FROM ORDERS")
 driver.execute("SELECT * FROM USERS")
 driver.disconnect
+driver.disconnect
