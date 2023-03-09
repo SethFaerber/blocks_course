@@ -16,4 +16,4 @@ total = scores.reduce(0) { |t, i| t += i }
 puts total
 
 even, odd = scores.partition { |n| n.even? }
-pp even, odd
+pp even, odd``
